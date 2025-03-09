@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créations Dupdup - Générateur de cartes Dobble</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <script type="module" src="scripts/app.js"></script>
+</head>
+<body>
+  <nav class="hamburger-menu">
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="menu-icon"> ☰ </label>
+    <ul class="menu-items">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="emoji-customization.html">Personnaliser les émojis</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <img src="isla_200x200.74417624_o08o07y0.jpg" alt="Logo Créations Dupdup" class="logo">
+    <h1>Générateur de cartes personnalisées</h1>
+    <div class="wave"></div>
+  </header>
+
+  <main>
+    <div class="actions">
+      <button id="generateCardsBtn">Générer des cartes</button>
+      <button id="downloadPDFBtn">Télécharger en PDF</button>
+    </div>
+
+    <div class="card-container-wrapper">
+      <div class="card-container" id="cardContainer"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Créations Dupdup</p>
+  </footer>
+</body>
+</html>
