@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suivi des cadeaux de Noël</title>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/gift-tracker.css">
+  <script defer src="scripts/gift-tracker.js"></script>
+</head>
+<body>
+  <header class="tracker-hero">
+    <img src="isla_200x200.74417624_o08o07y0.jpg" alt="Logo Créations Dupdup" class="logo">
+    <div class="hero-content">
+      <p class="eyebrow">Organisation de Noël</p>
+      <h1>Suivi de mes achats de cadeaux</h1>
+      <p class="lead">Visualisez vos idées, vos dépenses et vos étapes d'emballage jusqu'au grand jour.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#ajouter">Ajouter un cadeau</a>
+        <a class="button ghost" href="index.html">Retour à l'accueil</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="badge-label">Compte à rebours</span>
+      <span id="countdown" class="badge-value">Noël arrive !</span>
+    </div>
+  </header>
+
+  <main class="tracker-grid">
+    <section class="panel stats" aria-labelledby="statistiques">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Tableau de bord</p>
+          <h2 id="statistiques">Statistiques en temps réel</h2>
+        </div>
+        <div class="progress-wrapper" aria-label="Avancement global">
+          <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="progressFill"></span>
+          </div>
+          <span id="progressText" class="progress-text">0% des cadeaux prêts</span>
+        </div>
+      </div>
+      <div class="stat-cards">
+        <article class="stat-card">
+          <p class="label">Budget prévu</p>
+          <p id="budgetTotal" class="value">0 €</p>
+          <small>Somme des budgets fixés</small>
+        </article>
+        <article class="stat-card">
+          <p class="label">Dépenses engagées</p>
+          <p id="amountSpent" class="value">0 €</p>
+          <small>Montant réellement payé</small>
+        </article>
+        <article class="stat-card">
+          <p class="label">Budget restant</p>
+          <p id="budgetRemaining" class="value">0 €</p>
+          <small>Budget total - dépenses</small>
+        </article>
+        <article class="stat-card">
+          <p class="label">Cadeaux restants</p>
+          <p id="giftsPending" class="value">0</p>
+          <small>À acheter, commander ou emballer</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="ajouter" class="panel form-panel" aria-labelledby="nouveau-cadeau">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Planification</p>
+          <h2 id="nouveau-cadeau">Ajouter un cadeau</h2>
+        </div>
+        <p class="hint">Enregistrez vos idées avec un budget cible et suivez l'avancement en quelques clics.</p>
+      </div>
+      <form id="giftForm" class="gift-form">
+        <div class="form-row">
+          <label>Destinataire
+            <input type="text" name="recipient" placeholder="Ex : Papa, Marie, collègue" required>
+          </label>
+          <label>Idée cadeau
+            <input type="text" name="idea" placeholder="Ex : livre, coffret gourmand" required>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Budget cible (€)
+            <input type="number" name="budget" min="0" step="0.01" placeholder="Ex : 30">
+          </label>
+          <label>Montant dépensé (€)
+            <input type="number" name="price" min="0" step="0.01" placeholder="Ex : 24.90">
+          </label>
+          <label>Magasin / Lien
+            <input type="text" name="store" placeholder="Boutique, site ou lien court">
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Statut
+            <select name="status">
+              <option value="a-acheter">À acheter</option>
+              <option value="commande">Commandé</option>
+              <option value="recu">Reçu</option>
+              <option value="emballe">Emballé</option>
+              <option value="offert">Offert</option>
+            </select>
+          </label>
+          <label>Priorité
+            <select name="priority">
+              <option value="normal">Standard</option>
+              <option value="important">Important</option>
+              <option value="coup-de-coeur">Coup de cœur</option>
+            </select>
+          </label>
+          <label>Notes
+            <input type="text" name="notes" placeholder="Taille, couleur, date de livraison...">
+          </label>
+        </div>
+        <button type="submit" class="button primary">Enregistrer le cadeau</button>
+      </form>
+    </section>
+
+    <section class="panel list-panel" aria-labelledby="liste-cadeaux">
+      <div class="panel-header">
+        <div>
+          <p class="eyebrow">Suivi détaillé</p>
+          <h2 id="liste-cadeaux">Ma liste de cadeaux</h2>
+        </div>
+        <div class="filters">
+          <label>Filtrer par statut
+            <select id="statusFilter">
+              <option value="all">Tous</option>
+              <option value="a-acheter">À acheter</option>
+              <option value="commande">Commandé</option>
+              <option value="recu">Reçu</option>
+              <option value="emballe">Emballé</option>
+              <option value="offert">Offert</option>
+            </select>
+          </label>
+          <label>Rechercher un destinataire
+            <input type="search" id="searchInput" placeholder="Tapez un nom">
+          </label>
+        </div>
+      </div>
+      <div id="giftList" class="gift-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="tracker-footer">
+    <p>&copy; 2025 Créations Dupdup — Suivi des cadeaux de Noël</p>
+  </footer>
+</body>
+</html>
